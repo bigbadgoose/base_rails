@@ -1,0 +1,52 @@
+/* ----- DEFS ----- */
+
+/* ---------------------------------------------- VARS */
+
+$red: #f00;
+$boundary: 960px;
+$game_width: $boundary;
+$game_height: 600px;
+
+
+/* ---------------------------------------------- MIXINS */
+
+@mixin radius($radius: 3px) {
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin buttonize($color: #aa6) {
+  -moz-box-shadow: 0 1px 0 1px $color;
+  -webkit-box-shadow: 0 1px 0 1px $color;
+  box-shadow: 0 1px 0 1px $color;
+}
+
+@mixin glow($shadow: 0 0 6px rgba(255,255,255,.8)) {
+  -moz-box-shadow: $shadow;
+  -webkit-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+@mixin noselect {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+@mixin transition($trans: all 0.3s ease-out) {
+  -webkit-transition: $trans;
+  -moz-transition: $trans;
+  -ms-transition: $trans;
+  transition: $trans;
+}
+
+@mixin transform($xform: rotate(360deg)) {
+  -ms-transform: $xform;
+  -moz-transform: $xform;
+  -webkit-transform: $xform;
+  -o-transform: $xform;
+  transform: $xform;
+}

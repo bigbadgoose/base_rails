@@ -1,0 +1,234 @@
+@import "defs";
+
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+body {
+  background: black url('/images/bg_dark.png');;
+}
+.reticle {
+  background: url('/images/reticle.png') 0 0 no-repeat;
+  width: 436px;
+  height: 436px;
+  position: absolute;
+  top: 82px;
+  left: 262px;
+  z-index: 2;
+}
+
+.infobox {
+  background: rgba(0,0,0,.5);
+  color: #fff;
+  padding: 5px;
+  display: inline-block;
+  position: relative;
+  left: 110px;
+  background: white;
+  border: 1px solid black;
+  padding: 3px;
+  min-width: 250px;
+  min-height: 70px;
+}
+
+#header {
+  h1 {
+    font-family: rokkitt, courier, monosapce;
+    display: inline-block;
+    position: relative;
+    bottom: 30px;
+    left: 20px;
+    color: #fff;
+  }
+  .sprite {display:inline-block;}
+  .sprite.logo {
+    background-position:0 0; width:225px; height:93px;
+    margin-top: 10px;
+  }
+  .sprite.keys {
+    background-position:0px -93px;width:223px; height:71px;
+    position: absolute;
+    right: 10px; bottom: 20px;
+  }
+}
+
+#footer {
+  color: #999;
+  text-align: right;
+  text-transform: uppercase;
+  font-size: 10px;
+  padding-top: 15px;
+  a {
+    color: #996;
+  }
+}
+
+#game_board {
+  position: relative;
+}
+
+#overlay {
+  //border: 2px solid red;
+  background: black;
+  opacity: 0.1;
+  width: $game_width;
+  height: $game_height;
+  overflow: hidden;
+  position: absolute;
+  z-index: 1;
+  @include transition(all 1s ease-out);
+}
+
+#health {
+  background: rgba(0,0,0,.7) url('/images/health_box.png') 3px 4px no-repeat;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 5;
+  width: 116px;
+  height: 42px;
+  @include radius;
+  > #score {
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    top: 12px;
+    right: 10px;
+  }
+}
+
+#flags {
+  background: rgba(0,0,0,.7) url('/images/flag_counter.png') 3px 4px no-repeat;
+  position: absolute;
+  top: 10px;
+  left: 130px;
+  z-index: 5;
+  width: 90px;
+  height: 42px;
+  @include radius;
+  > #count {
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    top: 12px;
+    right: 10px;
+  }
+}
+
+#map_div {
+  background: #ccc;
+  border: 2px solid red;
+  width: $game_width;
+  height: $game_height;
+  overflow: hidden;
+  @include glow(0 0 0 5px #ff0);
+
+  // -- crazazy
+  &.psycho {
+    #overlay {
+      background: red;
+      opacity: .8;
+    }
+  }
+  &.calm {
+    #overlay {
+      background: #ffc;
+      opacity: .9;
+    }
+  }
+  &.fast {
+    #overlay {
+      @include transition(all 0.1s ease-in);
+    }
+  }
+  &.flash {
+    #overlay {
+      background: white;
+      opacity: 1;
+    }
+  }
+
+  .sprite.animal {
+    @include transition(all .5s ease-out);
+    @include transform(rotate(-360deg) scale(0));
+    width: 400px; height: 400px;
+    position: absolute;
+    top: 100px; left: 280px;
+    opacity: 0;
+    z-index: 3;
+    background: rgba(0,0,0,0);
+  }
+
+  &.biteoff {
+    .sprite.animal {
+      background: url('/images/advice_biteoff.jpg') 0 0 no-repeat;
+      opacity: 1;
+      @include transform(rotate(360deg) scale(1));
+    }
+  }
+  &.wolf-0 {
+    .sprite.animal {
+      background: url('/images/wolf_0.jpg') 0 0 no-repeat;
+      opacity: 1;
+      @include transform(rotate(360deg) scale(1));
+    }
+  }
+  &.wolf-1 {
+    .sprite.animal {
+      background: url('/images/wolf_1.jpg') 0 0 no-repeat;
+      opacity: 1;
+      @include transform(rotate(360deg) scale(1));
+    }
+  }
+  &.wolf-2 {
+    .sprite.animal {
+      background: url('/images/wolf_2.jpg') 0 0 no-repeat;
+      opacity: 1;
+      @include transform(rotate(360deg) scale(1));
+    }
+  }
+  &.pwned {
+    .sprite.animal {
+      background: url('/images/advice_pwned.jpg') 0 0 no-repeat;
+      opacity: 1;
+      @include transform(rotate(360deg) scale(1));
+    }
+  }
+  &.umadd {
+    .sprite.animal {
+      background: url('/images/advice_umadd.jpg') 0 0 no-repeat;
+      opacity: 1;
+      @include transform(rotate(360deg) scale(1));
+    }
+  }
+
+}
+
+
+#cr-stage {
+  border: 2px solid #000;
+  position: absolute !important;
+  top: 0; left: 0;
+  z-index: 3;
+}
+
+#messages {
+  @include radius;
+  @include transition;
+  //overflow-y: scroll;
+  overflow: hidden;
+  position: absolute;
+  width: 250px;
+  max-height: 200px;
+  padding: 10px;
+  background: rgba(0,0,0,.7);
+  z-index: 2;
+  color: #fff;
+  font-size: 10px;
+  right: 5px;
+  top: 5px;
+  &.on {
+    background: rgba(0,0,0,1);
+  }
+}
+

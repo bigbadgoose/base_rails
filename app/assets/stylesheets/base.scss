@@ -1,0 +1,269 @@
+@import "defs";
+
+/* ---------------------------------------------- RESET */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, figure, footer, header, hgroup, menu, nav, section, menu,
+time, mark, audio, video {
+  margin:0;
+  padding:0;
+  border:0;
+  outline:0;
+  font-size:100%;
+  vertical-align:baseline;
+  background:transparent;
+}
+article, aside, figure, footer, header, hgroup, nav, section {display:block;}
+nav ul {list-style:none;}
+blockquote, q {quotes:none;}
+blockquote:before, blockquote:after, q:before, q:after {content:'';content:none;}
+a {margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent;}
+ins {background-color:#ff9;color:#000;text-decoration:none;}
+mark {background-color:#ff9;color:#000;font-style:italic;font-weight:bold;}
+del {text-decoration:line-through;}
+abbr[title], dfn[title] {border-bottom:1px dotted #000;cursor:help;}
+table {border-collapse:collapse;border-spacing:0;}
+hr {display:block;height:1px;border:0;border-top:1px solid #ccc;margin:0;padding:0;}
+input, select {vertical-align:middle;}
+button { width:auto;overflow:visible;}
+
+
+/* ----------------------------------------------- RESTYLE */
+html {-webkit-font-smoothing: antialiased; overflow-y: scroll;} /* always show scroll bar so layout doesn't jump */
+body {
+  font-size: 14px;
+  font-family: 'Myriad Pro', 'Calibri', 'Lucida Grande', 'Lucida Sans Unicode',
+                Helvetica, Tahoma, Arial, Verdana, sans-serif;
+  color: #333;
+}
+
+h1,h2,h3,h4,h5,h6 {font-weight:bold;text-rendering:optimizeLegibility;}
+h1 {font-size:42px;color:#454c53;font-weight:normal;}
+h2 {font-size:24px;font-weight:normal;}
+h3 {font-size:16px;}
+
+p {margin: 5px 0;}
+a { outline:none;cursor:pointer;text-decoration:none;color:#03c;}
+a:hover { text-decoration: underline; }
+
+ul {margin-left:30px;}
+ol {margin-left:30px;list-style-type:decimal;}
+
+small {font-size:12px;}
+strong, th {font-weight:bold;}
+td, td img {vertical-align:top;}
+sub {vertical-align:sub;font-size:10px;}
+sup {vertical-align:super;font-size:10px;}
+pre {padding:15px;white-space:pre;white-space:pre-wrap;white-space:pre-line;word-wrap:break-word;}
+
+label, input[type=button], input[type=submit], button {cursor:pointer;}
+input[type="radio"] {vertical-align:text-bottom;}
+input[type="checkbox"] {vertical-align:bottom;*vertical-align:baseline;}
+textarea {color:#333;font-size:14px;}
+button {}
+
+blockquote {
+  padding: 10px;
+  margin: 20px 0;
+  background: #ffd;
+  color: #000;
+  border: 1px solid #ddc;
+}
+
+pre, code, kbd, samp {font-family:monospace, sans-serif;}
+hr {margin: 20px 0;}
+
+
+/* ---------------------------------------------- CLEARFIX */
+.clearfix:after {content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clearfix {zoom:1;}
+
+
+/* ---------------------------------------------- UTIL */
+.HIDE        {display: none;}
+.INVIS       {visibility: hidden;}
+.sub         {color: #666 !important;}
+.small       {font-size: 12px !important;}
+.tiny        {font-size: 10px !important;}
+.bold        {font-weight: bold !important;}
+.caps        {text-transform: uppercase !important;}
+.inline      {display: inline !important;}
+.float-left  {float: left !important;}
+.float-right {float: right !important;}
+.clear       {clear: both !important;}
+.center      {text-align: center !important;}
+
+.middot_spacer {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.no_select {
+  @no_select;
+}
+
+
+/* ---------------------------------------------- LAYOUT with baked in clearfixing */
+ul.stack {overflow: auto}
+ul.stack, ul.stack > li {padding:0px;margin:0px;list-style-type:none;}
+
+.bar {padding:0px;margin:0px;list-style-type:none;}
+.bar > li {float:left;list-style-type:none;}
+.bar > div, .bar > li {
+  float: left;
+}
+.bar:after {content:".";display:block;height:0;clear:both;visibility:hidden;}
+.bar {zoom:1;}
+
+.slip {
+  text-align: right;
+  position: relative;
+}
+.slip > div {
+  float: left;
+  text-align: left;
+}
+.slip:after {content:".";display:block;height:0;clear:both;visibility:hidden;}
+.slip {zoom:1;}
+
+.boundary {
+  margin: 0 auto;
+  width: $boundary;
+  position: relative;
+}
+.boundary:after {content:".";display:block;height:0;clear:both;visibility:hidden;}
+.boundary {zoom:1;}
+
+
+/* ---------------------------------------------- OVERLAY */
+#curtain {
+  display: none;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 11;
+  background-color: #000;
+  opacity: 0.7;
+  &.light {
+    opacity: .3;
+  }
+  &.bright {
+    background-color: #fff;
+    opacity: .3;
+  }
+}
+
+
+/* ---------------------------------------------- FORMS */
+input,
+textarea,
+select {
+  display: inline-block;
+  width: 210px;
+  padding: 4px;
+  font-size: 13px;
+  line-height: 18px;
+  color: #808080;
+  border: 1px solid #999;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+input, textarea {
+  -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -ms-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+  transition: border linear 0.2s, box-shadow linear 0.2s;
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+input:focus, textarea:focus {
+  outline: 0;
+  border-color: rgba(82, 168, 236, 0.8);
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1),
+                      0 0 8px rgba(82, 168, 236, 0.6);
+  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1),
+                   0 0 8px rgba(82, 168, 236, 0.6);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1),
+              0 0 8px rgba(82, 168, 236, 0.6);
+}
+
+
+/* ---------------------------------------------- COPY */
+.copy {
+  h2 {
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+  p {
+    padding: 5px;
+    margin: 5px 0;
+  }
+}
+
+
+/* ---------------------------------------------- SPRITE */
+.sprite {
+  background: url('/images/sprites.png') 0 0 no-repeat;
+  width: 32px;
+  height: 32px;
+}
+
+
+/* ---------------------------------------------- BUTTONS */
+.button {
+  padding: 5px 12px;
+  background: #eee;
+  color: #333;
+  font-size: 10px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid #eaeaea;
+  -moz-box-shadow: 0 0 1px #aaa, 0 2px 0 #999;
+  -webkit-box-shadow: 0 0 1px #aaa, 0 2px 0 #999;
+  box-shadow: 0 0 1px #aaa, 0 2px 0 #999;
+  text-shadow: 1px 1px 0 #fff, -1px -1px 0 #eee;
+  background: -moz-linear-gradient(top, #eeeeee 0%, #e6e6e6 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#e6e6e6));
+  background: -webkit-linear-gradient(top, #eeeeee 0%,#e6e6e6 100%);
+  background: -o-linear-gradient(top, #eeeeee 0%,#e6e6e6 100%);
+  background: -ms-linear-gradient(top, #eeeeee 0%,#e6e6e6 100%);
+  background: linear-gradient(top, #eeeeee 0%,#e6e6e6 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#e6e6e6',GradientType=0 );
+  @include radius;
+  &:hover {
+    text-decoration: none;
+    border-color: #fff;
+    color: #000;
+    background: -moz-linear-gradient(top, #f0f0f0 0%, #eee 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f0f0f0), color-stop(100%,#eee));
+    background: -webkit-linear-gradient(top, #f0f0f0 0%,#eee 100%);
+    background: -o-linear-gradient(top, #f0f0f0 0%,#eee 100%);
+    background: -ms-linear-gradient(top, #f0f0f0 0%,#eee 100%);
+    background: linear-gradient(top, #f0f0f0 0%,#eee 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#eee',GradientType=0 );
+  }
+}
+
+
+/* ---------------------------------------------- MEDIA */
+@media print {
+  * {background:transparent !important;color:#444 !important;text-shadow:none;}
+  a, a:visited {color:#444 !important;text-decoration:underline;}
+  a:after {content:" (" attr(href) ")";}
+  abbr:after {content:" (" attr(title) ")";}
+  .ir a:after {content:"";}  /* Don't show links for images */
+  pre, blockquote {border:1px solid #999;page-break-inside:avoid;}
+  img {page-break-inside:avoid;}
+  @page {margin:0.5cm;}
+  p, h2, h3 {orphans:3;widows:3;}
+  h2, h3{page-break-after:avoid;}
+}
+@media all and (orientation:portrait) {}
+@media all and (orientation:landscape) {}

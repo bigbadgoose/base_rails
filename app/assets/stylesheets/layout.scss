@@ -1,0 +1,28 @@
+@import "defs";
+
+
+/* ---------------------------------------------- LAYOUT  */
+
+body {}
+
+header:after, header > div:after,
+#main:after, #main > div:after,
+footer:after, footer > div:after {
+  content:".";display:block;height:0;clear:both;visibility:hidden;
+}
+header, header > div,
+#main, #main > div,
+footer, footer > div {
+  zoom: 1;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  > .boundary {
+    box-shadow: inset 0 -22px 21px -27px #cccccc;
+  }
+}
+
